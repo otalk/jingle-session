@@ -49,6 +49,11 @@ function JingleSession(opts) {
     // Here is where we'll ensure that all actions are processed
     // in order, even if a particular action requires async handling.
     this.processingQueue = async.queue(function (task, next) {
+        if (self.ended) {
+            // Don't process anything once the session has been ended
+            return next();
+        }
+
         var action = task.action;
         var changes = task.changes;
         var cb = task.cb;
@@ -228,6 +233,8 @@ JingleSession.prototype = extend(JingleSession.prototype, {
     end: function (reason, silent) {
         this.state = 'ended';
 
+        this.processingQueue.kill();
+
         if (!reason) {
             reason = 'success';
         }
@@ -245,6 +252,11 @@ JingleSession.prototype = extend(JingleSession.prototype, {
         }
     
         this.emit('terminated', this, reason);
+    },
+
+    onSessionTerminate: function (changes, cb) {
+        this.end(changes.reason, true);
+        cb();
     },
 
     // It is mandatory to reply to a session-info action with 
