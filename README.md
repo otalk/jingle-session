@@ -16,6 +16,10 @@ $ make
 
 The bundled and minified files will be in the generated `build` directory.
 
+## Documentation
+
+- [API Reference](docs/Reference.md)
+
 ## License
 
 MIT
