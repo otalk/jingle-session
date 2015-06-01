@@ -1,4 +1,5 @@
 var util = require('util');
+var uuid = require('uuid');
 var async = require('async');
 var extend = require('extend-object');
 var WildEmitter = require('wildemitter');
@@ -32,7 +33,7 @@ function JingleSession(opts) {
 
     var self = this;
 
-    this.sid = opts.sid || Date.now().toString();
+    this.sid = opts.sid || uuid.v4();
     this.peer = opts.peer;
     this.peerID = opts.peerID || this.peer.full || this.peer;
     this.isInitiator = opts.initiator || false;
