@@ -43,7 +43,7 @@ function JingleSession(opts) {
 
     // We track the intial pending description types in case
     // of the need for a tie-breaker.
-    this.pendingDescriptionTypes = opts.descriptionTypes || [];
+    this.pendingApplicationTypes = opts.applicationTypes || [];
 
     this.pendingAction = false;
 
