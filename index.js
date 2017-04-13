@@ -8,7 +8,7 @@ var WildEmitter = require('wildemitter');
 var ACTIONS = {
     'content-accept': 'onContentAccept',
     'content-add': 'onContentAdd',
-    'content-modify': 'onConentModify',
+    'content-modify': 'onContentModify',
     'content-reject': 'onContentReject',
     'content-remove': 'onContentRemove',
     'description-info': 'onDescriptionInfo',
