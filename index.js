@@ -200,6 +200,7 @@ JingleSession.prototype = extend(JingleSession.prototype, {
 
         this.emit('send', {
             to: this.peer,
+            id: uuid.v4(),
             type: 'set',
             jingle: data
         });
