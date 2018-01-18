@@ -171,7 +171,7 @@ JingleSession.prototype = extend(JingleSession.prototype, {
         message = this.sid + ': ' + message;
         this.emit('log:' + level, message);
     },
-    
+
     send: function (action, data) {
         data = data || {};
         data.sid = this.sid;
@@ -205,7 +205,7 @@ JingleSession.prototype = extend(JingleSession.prototype, {
             jingle: data
         });
     },
-    
+
     process: function (action, changes, cb) {
         this.processingQueue.push({
             action: action,
@@ -213,25 +213,25 @@ JingleSession.prototype = extend(JingleSession.prototype, {
             cb: cb
         });
     },
-    
+
     start: function () {
         this._log('error', 'Can not start base sessions');
         this.end('unsupported-applications', true);
     },
-    
+
     accept: function () {
         this._log('error', 'Can not accept base sessions');
         this.end('unsupported-applications');
     },
-    
+
     cancel: function () {
         this.end('cancel');
     },
-    
+
     decline: function () {
         this.end('decline');
     },
-    
+
     end: function (reason, silent) {
         this.state = 'ended';
 
@@ -246,13 +246,13 @@ JingleSession.prototype = extend(JingleSession.prototype, {
                 condition: reason
             };
         }
-    
+
         if (!silent) {
             this.send('session-terminate', {
                 reason: reason
             });
         }
-    
+
         this.emit('terminated', this, reason);
     },
 
@@ -261,7 +261,7 @@ JingleSession.prototype = extend(JingleSession.prototype, {
         cb();
     },
 
-    // It is mandatory to reply to a session-info action with 
+    // It is mandatory to reply to a session-info action with
     // an unsupported-info error if the info isn't recognized.
     //
     // However, a session-info action with no associated payload
@@ -292,7 +292,7 @@ JingleSession.prototype = extend(JingleSession.prototype, {
         }
     },
 
-    // It is mandatory to reply to a description-info action with 
+    // It is mandatory to reply to a description-info action with
     // an unsupported-info error if the info isn't recognized.
     onDescriptionInfo: function (changes, cb) {
         cb({
@@ -302,7 +302,7 @@ JingleSession.prototype = extend(JingleSession.prototype, {
         });
     },
 
-    // It is mandatory to reply to a transport-info action with 
+    // It is mandatory to reply to a transport-info action with
     // an unsupported-info error if the info isn't recognized.
     onTransportInfo: function (changes, cb) {
         cb({
