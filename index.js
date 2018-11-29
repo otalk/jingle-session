@@ -169,7 +169,9 @@ Object.defineProperties(JingleSession.prototype, {
 JingleSession.prototype = extend(JingleSession.prototype, {
     _log: function (level, message) {
         message = this.sid + ': ' + message;
-        this.emit('log:' + level, message);
+        const details = arguments;
+        details.splice(0, 2);
+        this.emit('log:' + level, message, details);
     },
     
     send: function (action, data) {
